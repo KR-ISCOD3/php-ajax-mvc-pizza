@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="../assets/style/style.css">
+    <!-- Link CSS -->
+
+    <!-- Link Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <!-- Link Bootstrap -->
+
+    <!-- link jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- link jquery -->
+</head>
+<body class="font-fira">
+
+
+    <div class="container-fluid p-0 d-none d-lg-flex ">
+        <aside style="height: 100vh;" class="col-2 bg-success sticky-top">
+
+            <!-- Logo -->
+            <div class="w-100 text-center py-2 border-3ottom border-secondary-subtle mb-3">
+                <img src="./assets/image/logo.png" alt="No Image" class="w-25">
+                <h2 class="text-light mb-0">Pizza. <span class="text-warning">KH</span> </h2>
+                <p class="text-light">Yummy with me</p>
+            </div>
+            <!-- Logo -->
+
+            <!-- Menu -->
+            <ul class="list-unstyled ">
+                <a href="" class="text-light text-decoration-none">
+                    <li class="ps-5 py-2 fs-5 hoverbg">
+                        <i class="bi bi-house-door-fill"></i>
+                        Home
+                    </li>
+                </a>
+                <a href="" class="text-light text-decoration-none ">
+                    <li class="ps-5 py-2 fs-5 hoverbg">
+                        <i class="bi bi-bookmark-plus-fill"></i>
+                        Size 
+                    </li>
+                </a>
+                <a href="" class="text-light text-decoration-none ">
+                    <li class="ps-5 py-2 fs-5 hoverbg">
+                        <i class="bi bi-fork-knife"></i>
+                        Items</li>
+                </a>
+                
+            </ul>
+            <div class="px-2 position-absolute bottom-0 w-100 mb-2">
+                <button class="btn btn-danger w-100">
+                    Logout
+                </button>
+            </div>
+            <!-- Menu -->
+        </aside>
+        
+        <!-- main content -->
+        <main class="col-10 px-4 py-2">
+            <header class="d-flex justify-content-between text-secondary border-bottom">
+                <p class="m-0 mb-1">🍕 Our pizza is not fake like Thailand </p>
+                <p class="m-0 mb-1">Mr. Tea K'pa</p>
+            </header>
+
+            <!-- section home -->
+            <section>
+                <h2 class="m-0 mt-3">Welcome back admin!</h2>
+                <p class="text-secondary">You Can order Pizza now for customer</p>
+
+                <div class="row m-0 p-0">
+                    <!-- card -->
+                    <div class="col-3 ps-0 pe-2">
+                        <div class="border px-4 py-2 d-flex align-items-center ">
+                            <h1 style="font-size: 58px;"
+                                class="text-success m-0 border-end border-3 pe-3 border-secondary-subtle">
+                                <i class="bi bi-person-fill-up"></i>
+                            </h1>
+                            <div class="ms-3">
+                                <p class="m-0 text-secondary">Total order / month</p>
+                                <h2>450</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 ps-0 pe-2">
+                        <div class="border px-4 py-2 d-flex align-items-center ">
+                            <h1 style="font-size: 58px;"
+                                class="text-success m-0 border-end border-3 pe-3 border-secondary-subtle">
+                                <i class="bi bi-fork-knife"></i>
+                            </h1>
+                            <div class="ms-3">
+                                <p class="m-0 text-secondary">Total Items</p>
+                                <h2>450</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 ps-0 pe-2">
+                        <div class="border px-4 py-2 d-flex align-items-center ">
+                            <h1 style="font-size: 58px;"
+                                class="text-success m-0 border-end border-3 pe-3 border-secondary-subtle">
+                                <i class="bi bi-people-fill"></i>
+                            </h1>
+                            <div class="ms-3">
+                                <p class="m-0 text-secondary">Total Customers</p>
+                                <h2>12</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 ps-0 pe-2">
+                        <div class="border px-4 py-2 d-flex align-items-center ">
+                            <h1 style="font-size: 58px;"
+                                class="text-success m-0 border-end border-3 pe-3 border-secondary-subtle">
+                                <i class="bi bi-person-fill-gear"></i>
+                            </h1>
+                            <div class="ms-3">
+                                <p class="m-0 text-secondary">Total Users</p>
+                                <h2>150</h2>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- card -->
+                  
+                </div>
+
+                <!-- order content -->
+                <div class="pe-2">       
+                    <div class="row m-0 p-0">
+                        <div class="col-7 py-3 px-0 pe-3">
+
+                            <!-- search -->
+                            <div class="d-flex justify-content-between">
+                                <h4 class="m-0 text-secondary">Order now ⬇️</h4>
+                                <form action="" class="col-5 mb-2 d-flex border rounded-3">
+                                    <input type="text" name="" id="" class="form-control shadow-none border-0" placeholder="Search items...">
+                                    <button class="btn border-0">
+                                        <i class="bi bi-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div class="overflow-auto" style="height:380px;">
+                                <table class="table table-striped border">
+                                    <thead class="sticky-top">
+                                        <tr>
+                                            <td class="bg-success text-light col-2 text-center">No<sup>o</sup></td>
+                                            <td class="bg-success text-light">Items </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="align-middle">
+                                            <td class="text-center">1</td>
+                                            <td>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="" alt="" style="width: 50px;height: 50px;">
+                                                        <h5 class="m-0 ms-1">Pizza Sea Beb Khmer</h5>
+                                                    </div>
+                                                    <div>
+                                                        <button class="btn btn-success">
+                                                            + Add to Cart 
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>   
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-5 py-3">
+                            <div class="border p-3">
+                                <div class="text-center">
+                                    <h3 class="text-decoration-underline">Order Cart</h3>
+                                </div>
+                                <div style="height: 220px;" class="overflow-auto">
+                                    <table class="table">
+                                        <thead class="sticky-top">
+                                            <tr>
+                                                <td class="text-secondary">#</td>
+                                                <td class="text-secondary">Item</td>
+                                                <td class="text-secondary">Size</td>
+                                                <td class="text-secondary">Qty</td>
+                                                <td class="text-secondary">Subtotal</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="align-middle">
+                                                <td>1</td>
+                                                <td>Pizza Yummy</td>
+                                                <td class="col-3">
+                                                    <select name="" id="" class="form-select shadow-none border">
+                                                        <option value="1">Small</option>
+                                                        <option value="2">Meduim</option>
+                                                        <option value="3">Large</option>
+                                                    </select>
+                                                </td>
+                                                <td class="col-2">
+                                                    <input min="0" type="number" class="form-control shadow-none border">
+                                                </td>
+                                                <td>
+                                                    $1.50
+                                                </td>
+                                            </tr>
+                                            <tr class="align-middle">
+                                                <td>1</td>
+                                                <td>Pizza Yummy</td>
+                                                <td class="col-3">
+                                                    <select name="" id="" class="form-select shadow-none border">
+                                                        <option value="1">Small</option>
+                                                        <option value="2">Meduim</option>
+                                                        <option value="3">Large</option>
+                                                    </select>
+                                                </td>
+                                                <td class="col-2">
+                                                    <input min="0" type="number" class="form-control shadow-none border">
+                                                </td>
+                                                <td>
+                                                    $1.50
+                                                </td>
+                                            </tr>
+                                            <tr class="align-middle">
+                                                <td>1</td>
+                                                <td>Pizza Yummy</td>
+                                                <td class="col-3">
+                                                    <select name="" id="" class="form-select shadow-none border">
+                                                        <option value="1">Small</option>
+                                                        <option value="2">Meduim</option>
+                                                        <option value="3">Large</option>
+                                                    </select>
+                                                </td>
+                                                <td class="col-2">
+                                                    <input min="0" type="number" class="form-control shadow-none border">
+                                                </td>
+                                                <td>
+                                                    $1.50
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                               <div class="d-flex justify-content-between align-items-center">
+                                 <div class="text-secondary">
+                                    <p class="m-0 fs-5">Tax: 10%</p>
+                                    <p class="m-0 fs-5">Total: <span class="fw-bold">$4.50</span></p>
+                                 </div>
+                                 <div>
+                                    <button class="text-end btn btn-success">
+                                        Process Order
+                                    </button>
+                                 </div>
+                               </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <!-- order content -->
+            </section>
+
+
+            <!-- section size -->
+            <section class="border-top">
+                <div class="d-flex justify-content-between align-items-center">
+                    
+                    <div>
+                        <h2 class="m-0 mt-3">Size Overview</h2>
+                        <p class="text-secondary">You can create your own category now</p>
+                    </div>
+
+                    <div>
+                        <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalsize">
+                            Add Size +
+                        </button>
+                    </div>
+                </div>
+
+                <div class="border">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td class="text-secondary">#ID</td>
+                                <td class="text-secondary">Size</td>
+                                <td class="text-secondary">Price</td>
+                                <td class="text-secondary">Create at</td>
+                                <td class="text-secondary text-center">Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="align-middle">
+                                <td>1</td>
+                                <td>Small</td>
+                                <td>$1.00</td>
+                                <td>
+                                    <span class="bg-secondary-subtle text-secondary px-3 rounded-3">2025-07-31</span>
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modaleditsize">
+                                        <i class="bi bi-vector-pen text-light"></i>
+                                    </button>
+
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modaldeletesize">
+                                        <i class="bi bi-trash3-fill"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- modal add size -->
+                <div class="modal fade" id="modalsize" >
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5">Add Size</h1>
+                                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="">
+                                    <div class="d-flex mb-2">
+                                        <div class="col-6 pe-2">
+                                            <label for="">Size</label>
+                                            <input class="form-control shadow-none border" type="text" placeholder="Enter Size" name="size" id="size">
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="">Price</label>
+                                            <input class="form-control shadow-none border"  type="text" placeholder="Enter Price" name="price" id="price">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-success">Add Size +</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <!-- modal edit size -->
+                <div class="modal fade" id="modaleditsize" >
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5">Update Size</h1>
+                                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="">
+                                    <div class="d-flex mb-2">
+                                        <div class="col-6 pe-2">
+                                            <label for="">Size</label>
+                                            <input class="form-control shadow-none border" type="text" placeholder="Enter Size" name="size" id="size">
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="">Price</label>
+                                            <input class="form-control shadow-none border"  type="text" placeholder="Enter Price" name="price" id="price">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-warning">Update</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- modal delete size -->
+                <div class="modal fade" id="modaldeletesize" >
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5">Delete Size</h1>
+                                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="">
+                                    
+                                    <p class="text-center fs-4">Are u sur u want to <span class="text-danger">delete</span>?🤔</p>
+                                    
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-danger">Delete</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- section item -->
+            <section class="border-top">
+                <div class="d-flex justify-content-between align-items-center">
+                    
+                    <div>
+                        <h2 class="m-0 mt-3">Item Overview</h2>
+                        <p class="text-secondary">You can create your own category now</p>
+                    </div>
+
+                    <div>
+                        <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalitem">
+                            Add item +
+                        </button>
+                    </div>
+                </div>
+
+                <div class="border">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td class="text-secondary">#ID</td>
+                                <td class="text-secondary">Image</td>
+                                <td class="text-secondary">Name</td>
+                                <td class="text-secondary">User</td>
+                                <td class="text-secondary">Create at</td>
+                                <td class="text-secondary text-center">Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="align-middle">
+                                <td>1</td>
+                                <td>
+                                    <div style="width: 40px;height: 40px;" class="overflow-hidden bg-success rounded-3">
+                                        <img src="" alt="" class="w-100 h-100 object-fit-cover">
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="text-success">Pizza Lomdab ISO 2025</span>
+                                </td>
+                                <td>
+                                    <span class="text-secondary">Add BY: <span class="text-dark">Tea K'pa</span></span>
+                                </td>
+                                <td>
+                                    <span class="bg-secondary-subtle text-secondary px-3 rounded-3">2025-07-31</span>
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalupitem">
+                                        <i class="bi bi-vector-pen text-light"></i>
+                                    </button>
+                                    
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modaldeleteitem">
+                                        <i class="bi bi-trash3-fill"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- modal add item -->
+                <div class="modal fade" id="modalitem" >
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5">Add Item</h1>
+                                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="">
+                                   
+                                    <div>
+                                        <label for="">Image</label>
+                                        <div id="previewimage" class="w-100 bg-secondary overflow-hidden border" style="height: 250px;">
+                                            <img src="../assets/image/placeholderpizza.png" style="height: 100%; width: auto;" class="w-100 h-100 object-fit-cover">
+                                        </div>
+                                        <input required type="file" name="image" id="image" class="form-control shadow-none border">
+                                    </div>
+                                    <div class="my-2">
+                                        <label for="">Item Name</label>
+                                        <input required class="form-control shadow-none border"  type="text" placeholder="Enter Name" name="price" id="price">
+                                    </div>
+                                   
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-success">Add Item +</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <!-- modal update item -->
+                <div class="modal fade" id="modalupitem" >
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5">Update Item</h1>
+                                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="">
+                                   
+                                    <div>
+                                        <label for="">Image</label>
+                                        <div id="previewimage" class="w-100 bg-secondary overflow-hidden border" style="height: 250px;">
+                                            <img src="../assets/image/placeholderpizza.png" style="height: 100%; width: auto;" class="w-100 h-100 object-fit-cover">
+                                        </div>
+                                        <input required type="file" name="image" id="image" class="form-control shadow-none border">
+                                    </div>
+                                    <div class="my-2">
+                                        <label for="">Item Name</label>
+                                        <input required class="form-control shadow-none border"  type="text" placeholder="Enter Name" name="price" id="price">
+                                    </div>
+                                   
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-warning">Update Items</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- modal delete size -->
+                <div class="modal fade" id="modaldeleteitem" >
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5">Delete Item</h1>
+                                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="">
+                                    
+                                    <p class="text-center fs-4">Are u sur u want to <span class="text-danger">delete</span>?🤔</p>
+                                    
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-danger">Delete</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+           
+        </main>
+        <!-- main content -->
+    </div>
+
+    <!-- Page not found want on moble -->
+    <div class="container-fluid d-flex justify-content-center align-items-center d-lg-none" style="height: 100vh;">
+        <div class="text-center">
+            <img src="../assets/image/gifnotfound.gif" alt="" class="w-100">
+            <h3 class="m-0">Page Not Found (BRO KO MES)</h3>
+            <p class="text-secondary">Berk ler Laptop tv Bro</p>
+        </div>
+    </div>
+    <!-- Page not found want on moble -->
+</body>
+<script src="../assets/js/preview.js"></script>
+</html>
