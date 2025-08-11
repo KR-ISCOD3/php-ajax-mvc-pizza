@@ -27,15 +27,20 @@
 
     // get func from ajax if not null
     $func =  $_POST['func'] ?? null;
-
+    
     switch($page){
 
         // for signup
         case 'signup':
             $signup = new SignUpController();
 
-            switch($func){
-                
+            switch($func){  
+                // create case register for call signup function 
+                // from controller
+                case 'register':
+                    $signup->signup();
+                break;
+
                 default:
                     $signup->index();
                 break;
