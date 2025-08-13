@@ -4,7 +4,7 @@
     // get page from url if not auto to home
     session_start(); // session start
 
-    $page = $_GET['page'] ?? 'hompage';
+    $page = $_GET['page'] ?? 'homepage';
     $publicpage = ['signin','signup'];
 
     // check user haved login or not and have page or not
@@ -65,6 +65,9 @@
             // cerate object from HomeController
             $home = new HomeController();
             switch($func){
+                case 'logout':
+                    $home->logout();
+                break;
                 // call function in HomeController like create,update,delete....
                 default:
                     // default home page

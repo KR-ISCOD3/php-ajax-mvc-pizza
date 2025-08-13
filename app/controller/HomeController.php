@@ -18,5 +18,12 @@
         public function destroy(){
             
         }
+
+        public function logout(){
+            session_unset();
+            session_destroy();
+
+            echo 'Logout Success';
+        }
     }
 ?>

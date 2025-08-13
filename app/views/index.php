@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
-    <!-- link path -->
+    
+    
+    <!-- link path -->  
     <?php include 'app/views/includes/links.php' ?>
     <!-- link path -->
 
@@ -49,9 +50,13 @@
                 
             </ul>
             <div class="px-2 position-absolute bottom-0 w-100 mb-2">
-                <button class="btn btn-danger w-100">
-                    Logout
-                </button>
+                <!-- <form  id="formLogout"> -->
+                    <button data-bs-toggle="modal" data-bs-target="#logoutmodal" class="btn btn-danger w-100">
+                        Logout
+                    </button>
+                <!-- </form> -->
+
+              
             </div>
             <!-- Menu -->
         </aside>
@@ -61,13 +66,35 @@
         <main class="col-10 px-4 py-2">
             <header class="d-flex justify-content-between text-secondary border-bottom">
                 <p class="m-0 mb-1">🍕 Our pizza is not fake like Thailand </p>
-                <p class="m-0 mb-1">Mr. Tea K'pa</p>
+                <p class="m-0 mb-1">Mr. <?= $_SESSION['user']['username'] ?></p>
             </header>
             
             <?php include $views ?>
            
         </main>
         <!-- main content -->
+    </div>
+
+    <div class="modal fade" id="logoutmodal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Logout form</h3>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form  id="formLogout">
+                        <h3 class="text-center">Are you sure you want to logout? 🤔</h3>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+                            <button data-bs-toggle="modal" data-bs-target="#logoutmodal" class="btn btn-danger">
+                                Yes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>  
+        </div>
     </div>
 
     <!-- Page not found want on moble -->
@@ -81,4 +108,26 @@
     <!-- Page not found want on moble -->
 </body>
 <script src="app/assets/js/preview.js"></script>
+<script>
+    $(document).ready(function(){
+
+        $('#formLogout').on('submit',function(e){
+            
+            e.preventDefault();
+            $.ajax({
+                url:'index.php?page=homepage',
+                method: 'POST',
+                data:{
+                    func: 'logout'
+                },
+                success: function(res){
+                    if(res){
+                        window.location.href = 'index.php'
+                    }
+                }
+            })
+        })
+
+    })
+</script>
 </html>

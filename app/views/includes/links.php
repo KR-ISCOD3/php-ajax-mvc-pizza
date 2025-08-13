@@ -1,3 +1,4 @@
+<link rel="shortcut icon" href="app/assets/image/logo.png" type="image/x-icon">
 
 <!-- Link CSS -->
 <link rel="stylesheet" href="app/assets/style/style.css">

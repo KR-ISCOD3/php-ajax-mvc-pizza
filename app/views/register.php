@@ -1,3 +1,9 @@
+<?php 
+    // if($_SESSION['user']){
+    //     header('Location: index.php?page=homepage');
+    // }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,10 +23,13 @@
                 <h2 class="mb-0">Pizza. <span class="text-warning">KH</span> </h2>
                 <p class="text-secondary">Please field the form to create account.</p>
             </div>
-           <form id="signupform">
+
+            <form id="signupform">
+
                 <input required id="username" name="username" type="text" class="form-control my-3 shadow-none border" placeholder="Username">
                 <input required id="email" name="email" type="email" class="form-control my-3 shadow-none border" placeholder="Email">
                 <input required id="password" name="password" type="password" class="form-control my-3 shadow-none border" placeholder="Password">
+                
                 <hr>
                 <button class="btn btn-success w-100">
                     Sign Up
@@ -31,7 +40,7 @@
                         Sign In
                     </a>
                 </p>
-           </form>
+            </form>
         </div>
     </div>
 
@@ -40,46 +49,5 @@
     <!-- link notfound page -->
    
 </body>
-<script>
-    // jquery syntax
-    $(document).ready(function(){
-        // listen to id signupform that submit data or not
-        $('#signupform').on('submit',function(e){
-
-            e.preventDefault(); // prevent reload page
-
-            // declare var to get value from name in <input>
-            let name = $('#username').val() 
-            let email = $('#email').val()
-            let pass = $('#password').val()
-
-            // console.log(name,email,pass);
-
-            // syntax ajax
-            $.ajax({
-                url:'index.php?page=signup',
-                method:'post',
-                data:{
-                    func:'register',
-                    name:name,
-                    email:email,
-                    pass:pass
-                },
-                dataType: 'json',
-                success: function(res){
-                    // success message
-                },
-                error:function(){
-                    // error message
-                }
-            })
-
-            // clear input form
-            $('#username').val('')
-            $('#email').val('')
-            $('#password').val('')
-            
-        })
-    })
-</script>
+<?php include 'app/views/includes/linkScript.php' ?>
 </html>

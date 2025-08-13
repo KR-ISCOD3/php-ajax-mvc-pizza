@@ -12,7 +12,7 @@
         // singup function
         public function signup(){
             // session user is started when create account
-            session_start();
+            // session_start();
 
             // get data from frontent that use POST method
             $name = $_POST['name'] ?? '';
@@ -27,11 +27,13 @@
                 ]);
             }
 
+            // convert password to many string 'adasd%Q#13...'
+            $hashPassword = password_hash($pass, PASSWORD_DEFAULT);
             // create an object to calling function create from model
             $signup = new SignUp();
 
             // call function create from model
-            $rs = $signup->create($name,$email,$pass);
+            $rs = $signup->create($name,$email,$hashPassword);
 
             // check if success send user session to front
             if($rs){
@@ -41,11 +43,13 @@
                     'email' => $email,
                 ];
 
-                echo json_encode(['success' => true]);
+                // send success
+                echo "success";
+                exit;
             }
             // if not show message error
             else{
-                echo json_encode(['success' => false, 'message' => 'Failed to create account']);
+                echo 'Failed to create account';
             }
             
             
