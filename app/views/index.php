@@ -50,13 +50,11 @@
                 
             </ul>
             <div class="px-2 position-absolute bottom-0 w-100 mb-2">
-                <!-- <form  id="formLogout"> -->
-                    <button data-bs-toggle="modal" data-bs-target="#logoutmodal" class="btn btn-danger w-100">
-                        Logout
-                    </button>
-                <!-- </form> -->
-
-              
+                
+                <button data-bs-toggle="modal" data-bs-target="#logoutmodal" class="btn btn-danger w-100">
+                    Logout
+                </button>
+               
             </div>
             <!-- Menu -->
         </aside>
