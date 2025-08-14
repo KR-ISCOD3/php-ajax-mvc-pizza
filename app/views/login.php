@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Account</title>
 
-   <!-- link path -->
+     <!-- link path -->
     <?php include 'app/views/includes/links.php' ?>
     <!-- link path -->
 </head>
@@ -17,7 +17,7 @@
                 <h2 class="mb-0">Pizza. <span class="text-warning">KH</span> </h2>
                 <p class="text-secondary">Please field the form to create account.</p>
             </div>
-           <form action="">
+           <form id="signinForm">
                 <input required id="nameoremail" name="nameoremail" type="text" class="form-control my-3 shadow-none border" placeholder="Username or Email">
                 <input required id="password" name="password" type="password" class="form-control my-3 shadow-none border" placeholder="Password">
                 <hr>
@@ -45,4 +45,40 @@
     </div>
     <!-- Page not found want on moble -->
 </body>
+<script>
+    $(document).ready(function(){
+        $('#signinForm').on('submit',function(e){
+            e.preventDefault();
+
+            let nameoremail = $('#nameoremail').val();
+            let password = $('#password').val();
+
+            console.log(nameoremail,password);
+
+            // syntax ajax
+            $.ajax({
+                url:'index.php?page=signin',
+                method:'POST',
+                data:{   
+                    func:'login',
+                    nameoremail:nameoremail,
+                    pass:password,
+                },
+                success: function(res){
+                    if (res) {
+                        window.location.href = 'index.php?page=homepage'; 
+                    } else {
+                        console.log('Error: ' + res);
+                    }
+                },
+                error:function(res){
+                    console.log(res);
+                }
+            })
+
+            $('#nameoremail').val('');
+            $('#password').val('')
+        })
+    })
+</script>
 </html>

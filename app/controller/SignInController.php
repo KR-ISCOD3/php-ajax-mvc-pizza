@@ -10,6 +10,8 @@
         }
         
         public function login(){
+            // session_start();
+            
             $nameoremail = $_POST['nameoremail'] ?? "";
             $pass = $_POST['pass'] ?? "";
 
@@ -17,11 +19,11 @@
                 echo 'Please fill the form';
             }
 
-            $hashPassword = password_hash($pass,PASSWORD_DEFAULT);
+            // $hashPassword = password_hash($pass,PASSWORD_DEFAULT);
 
             $login = new SignIn();
 
-            $user = $login->loginUser($nameoremail,$hashPassword);
+            $user = $login->loginUser($nameoremail, $pass);
 
            // check if success send user session to front
             if( $user){
@@ -38,7 +40,8 @@
             }
             // if not show message error
             else{
-                echo 'Failed to create account';
+                echo 'Invalid username/email or password';
+                exit;
             }
         }
     }   

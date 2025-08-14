@@ -53,6 +53,9 @@
 
             switch($func){
 
+                case "login":
+                    $signin->login();   
+                break;
                 default:
                     $signin->index();
                 break;
