@@ -84,10 +84,14 @@
             // cerate object from HomeController
             $size = new SizeController();
             switch($func){
+                case 'create_size':
+                    $size->create();
+                break;
                 default:
+              
                     // default home page
                     $size->index();
-                    break;
+                break;
             }
         break;
 

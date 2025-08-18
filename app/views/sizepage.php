@@ -28,6 +28,34 @@
                 </tr>
             </thead>
             <tbody>
+                <?php 
+                    foreach($sizes as $s){
+                        $id = $s['id'];
+                        $size = $s['size'];
+                        $price = $s['price'];
+
+                        echo <<<HTML
+                                <tr class="align-middle">
+                                    <td>$id</td>
+                                    <td>$size</td>
+                                    <td>$$price</td>
+                                    <td>
+                                        <span class="bg-secondary-subtle text-secondary px-3 rounded-3">2025-07-31</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modaleditsize">
+                                            <i class="bi bi-vector-pen text-light"></i>
+                                        </button>
+
+                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modaldeletesize">
+                                            <i class="bi bi-trash3-fill"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                        HTML;
+                    }
+                ?>
+
                 <tr class="align-middle">
                     <td>1</td>
                     <td>Small</td>
@@ -58,7 +86,7 @@
                     <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
+                    <form action="" id="addForm">
                         <div class="d-flex mb-2">
                             <div class="col-6 pe-2">
                                 <label for="">Size</label>
@@ -71,7 +99,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success">Add Size +</button>
+                            <button type="submit" class="btn btn-success">Add Size +</button>
                         </div>
                     </form>
                 </div>
@@ -134,3 +162,41 @@
     </div>
 
 </section>
+
+<script>
+    $(document).ready(function(){
+        $('#addForm').on('submit',function(e){
+            e.preventDefault();
+
+            let size = $('#size').val();
+            let price = $('#price').val();
+
+            // console.log(size,price);
+            
+            $.ajax({
+                url: 'index.php?page=sizepage',
+                method: 'post',
+                data: {
+                    func: 'create_size',
+                    size: size,
+                    price: price
+                },
+                success: function(res){
+                    $('#modalsize').modal('hide');
+
+                    location.reload();
+                    // if(res){
+                    //     alert(res);
+                    // }
+                }
+            });
+
+            $('#size').val('');
+            $('#price').val('');
+
+
+            
+        })
+            
+    })
+</script>

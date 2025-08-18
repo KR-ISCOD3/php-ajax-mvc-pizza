@@ -17,29 +17,23 @@
             $stmt->bind_param("sd", $size, $price);
             
             // Execute the insert
-            $stmt->execute();
+            $rs = $stmt->execute();
 
-            // Check if any row was inserted
-            if ($stmt->affected_rows > 0) {
+            return $rs;
 
-                // Get the ID of the last inserted row
-                $lastId = $this->conn->insert_id;
-
-                // Prepare statement to fetch the last inserted row
-                $stmt = $this->conn->prepare('SELECT * FROM `sizes` WHERE id = ?');
-                $stmt->bind_param("i", $lastId);
-                $stmt->execute();
-
-                // Get result as associative array
-                $result = $stmt->get_result();
-                return $result->fetch_assoc();
-            } else {
-                return null; // No row inserted
-            }
         }
 
-        public function get(){
-            
+        // getAllData from database
+        public function getAllData(){
+            $stmt = $this->conn->prepare('SELECT * FROM sizes ORDER BY id DESC');
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            $sizes = [];
+            while($row = $result->fetch_assoc()){
+                $sizes[] = $row;
+            }
+            return $sizes;
         }
 
         public function update($id){
