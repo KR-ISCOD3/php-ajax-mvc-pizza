@@ -84,9 +84,16 @@
             // cerate object from HomeController
             $size = new SizeController();
             switch($func){
+
+                // fetch-data
+                case 'fetchdata':
+                    $size->getAllData();
+                break;
+
                 case 'create_size':
                     $size->create();
                 break;
+                
                 default:
               
                     // default home page

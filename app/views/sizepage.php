@@ -27,52 +27,8 @@
                     <td class="text-secondary text-center">Action</td>
                 </tr>
             </thead>
-            <tbody>
-                <?php 
-                    foreach($sizes as $s){
-                        $id = $s['id'];
-                        $size = $s['size'];
-                        $price = $s['price'];
-
-                        echo <<<HTML
-                                <tr class="align-middle">
-                                    <td>$id</td>
-                                    <td>$size</td>
-                                    <td>$$price</td>
-                                    <td>
-                                        <span class="bg-secondary-subtle text-secondary px-3 rounded-3">2025-07-31</span>
-                                    </td>
-                                    <td class="text-center">
-                                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modaleditsize">
-                                            <i class="bi bi-vector-pen text-light"></i>
-                                        </button>
-
-                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modaldeletesize">
-                                            <i class="bi bi-trash3-fill"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                        HTML;
-                    }
-                ?>
-
-                <tr class="align-middle">
-                    <td>1</td>
-                    <td>Small</td>
-                    <td>$1.00</td>
-                    <td>
-                        <span class="bg-secondary-subtle text-secondary px-3 rounded-3">2025-07-31</span>
-                    </td>
-                    <td class="text-center">
-                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modaleditsize">
-                            <i class="bi bi-vector-pen text-light"></i>
-                        </button>
-
-                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modaldeletesize">
-                            <i class="bi bi-trash3-fill"></i>
-                        </button>
-                    </td>
-                </tr>
+            <tbody id="tb">
+               
             </tbody>
         </table>
     </div>
@@ -165,6 +121,23 @@
 
 <script>
     $(document).ready(function(){
+
+        function fetchData(){
+            $.ajax({
+                url: 'index.php?page=sizepage',
+                method: 'post',
+                data: {
+                    func: 'fetchdata',
+                },
+                success: function(res){
+                    // $('#tb').html(''); 
+                    $('#tb').html(res);         
+                }
+            });
+        }
+
+        fetchData();
+
         $('#addForm').on('submit',function(e){
             e.preventDefault();
 
@@ -184,7 +157,7 @@
                 success: function(res){
                     $('#modalsize').modal('hide');
 
-                    location.reload();
+                   fetchData();
                     // if(res){
                     //     alert(res);
                     // }
