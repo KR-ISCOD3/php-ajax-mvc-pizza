@@ -89,6 +89,10 @@
                 case 'fetchdata':
                     $size->getAllData();
                 break;
+                
+                case 'update_size':
+                    $size->update();
+                break;    
 
                 case 'create_size':
                     $size->create();

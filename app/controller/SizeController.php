@@ -49,7 +49,14 @@
                                 <span class="bg-secondary-subtle text-secondary px-3 rounded-3">2025-07-31</span>
                             </td>
                             <td class="text-center">
-                                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modaleditsize">
+                                <button  
+
+                                    data-id="$id" 
+                                    data-size="$size" 
+                                    data-price="$price"
+
+                                    class="btn btn-warning btn-edit" 
+                                    data-bs-toggle="modal" data-bs-target="#modaleditsize">
                                     <i class="bi bi-vector-pen text-light"></i>
                                 </button>
 
@@ -62,9 +69,30 @@
             }
         }
 
-        public function update(){
+        public function update() {
             
+            $id = $_POST['id'] ?? "";
+            $sizeName = $_POST['size'] ?? "";
+            $price = $_POST['price'] ?? "";
+
+            if(empty($sizeName) || empty($price)){
+                echo 'Please fill all form';
+            }
+
+            $sizeModel = new Size();
+            $priceNumber = floatval($price);
+            $rs = $sizeModel->update($id,$sizeName, $priceNumber);
+
+
+            if($rs){
+                echo "Success";
+            } else {
+                echo "Failed";
+            }
+
+            exit; // stop any further HTML/template
         }
+
 
         public function destroy(){
             

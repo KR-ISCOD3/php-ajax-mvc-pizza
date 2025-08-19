@@ -73,20 +73,22 @@
                     <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
+                    <form action="" id="upform">
+                        <input type="hidden" name="id" id="upid">
                         <div class="d-flex mb-2">
                             <div class="col-6 pe-2">
+
                                 <label for="">Size</label>
-                                <input class="form-control shadow-none border" type="text" placeholder="Enter Size" name="size" id="size">
+                                <input name="size" id="upsize" class="form-control shadow-none border" type="text" placeholder="Enter Size" >
                             </div>
                             <div class="col-6">
                                 <label for="">Price</label>
-                                <input class="form-control shadow-none border"  type="text" placeholder="Enter Price" name="price" id="price">
+                                <input name="price" id="upprice" class="form-control shadow-none border"  type="text" placeholder="Enter Price" >
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-warning">Update</button>
+                            <button type="submit" class="btn btn-warning">Update</button>
                         </div>
                     </form>
                 </div>
@@ -138,6 +140,7 @@
 
         fetchData();
 
+
         $('#addForm').on('submit',function(e){
             e.preventDefault();
 
@@ -166,10 +169,56 @@
 
             $('#size').val('');
             $('#price').val('');
+            
+        })      
+
+        
+        // delegated binding (works even after AJAX)
+        $(document).on('click','.btn-edit',function(){
+
+            var id = $(this).data("id");
+            var size = $(this).data("size");
+            var price = $(this).data("price");
+
+            $('#upid').val(id);
+            $('#upsize').val(size);
+            $('#upprice').val(price);
+        });
 
 
-            
-        })
-            
+        // updarte
+        $('#upform').on('submit',function(e){
+            e.preventDefault();
+
+            let id = $('#upid').val()
+            let size = $('#upsize').val();
+            let price = $('#upprice').val();
+
+            // console.log(id,size,price);
+           
+             $.ajax({
+                url: 'index.php?page=sizepage',
+                method: 'post',
+                data: {
+                    func: 'update_size',
+                    id: id,
+                    size: size,
+                    price: price
+                },
+                success: function(res){
+                    $('#modaleditsize').modal('hide');
+
+                   fetchData();
+                    // if(res){
+                    //     alert(res);
+                    // }
+                }
+            });
+
+            $('#upsize').val('');
+            $('#upprice').val('');
+        })      
+
+
     })
 </script>

@@ -36,8 +36,17 @@
             return $sizes;
         }
 
-        public function update($id){
+        public function update($id, $size, $price){
+            // Prepare insert statement
+            $stmt = $this->conn->prepare('UPDATE `sizes` SET `size` = ?, `price` = ? WHERE `id` = ?');
             
+            // Bind parameters: "s" = string, "d" = double/float
+            $stmt->bind_param("sdi", $size, $price,$id);
+            
+            // Execute the insert
+            $rs = $stmt->execute();
+
+            return $rs;
         }
 
         public function delete($id){
