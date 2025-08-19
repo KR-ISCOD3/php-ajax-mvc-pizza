@@ -38,13 +38,13 @@
             foreach($sizes as $s){
                 $id = $s['id'];
                 $size = $s['size'];
-                $price = $s['price'];
+                $price = number_format($s['price'], 2); 
 
                 echo <<<HTML
                         <tr class="align-middle">
                             <td>$id</td>
                             <td>$size</td>
-                            <td>$$price</td>
+                            <td class="text-danger">$$price</td>
                             <td>
                                 <span class="bg-secondary-subtle text-secondary px-3 rounded-3">2025-07-31</span>
                             </td>
