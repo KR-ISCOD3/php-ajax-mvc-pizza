@@ -105,13 +105,15 @@
                     <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
-                        
+
+                    <form id="delForm">
+
+                        <input type="hidden" name="delid" id="delid">
                         <p class="text-center fs-4">Are u sur u want to <span class="text-danger">delete</span>?🤔</p>
                         
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
                         </div>
                     </form>
                 </div>
@@ -220,5 +222,40 @@
         })      
 
 
+        
+        $(document).on('click','.btn-delete',function(){
+
+            var id = $(this).data('id');
+
+            $('#delid').val(id);        
+        });
+
+
+        $('#delForm').on('submit',function(e){
+
+            e.preventDefault();
+
+            let id = $('#delid').val();
+
+            // alert(id);
+
+            $.ajax({
+                url:"index.php?page=sizepage",
+                method: 'post',
+                data:{
+                    func:'delete_size',
+                    id:id,
+                },
+                success: function(res){
+                    $('#modaldeletesize').modal('hide');
+                    res = res.trim();
+                    if(res == 'success'){
+                        alert("Delete Success");
+                    }
+
+                    fetchData();
+                }
+            })
+        })
     })
 </script>

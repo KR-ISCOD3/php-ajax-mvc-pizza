@@ -97,6 +97,10 @@
                 case 'create_size':
                     $size->create();
                 break;
+
+                case 'delete_size':
+                    $size->destroy();
+                break;
                 
                 default:
               
@@ -111,10 +115,24 @@
             // cerate object from HomeController
             $item = new ItemController();
             switch($func){
+
+                case 'create':
+                    $item->create();
+                break;    
+
+                case 'getAllData':
+                    $item->getAllData();
+                break;
+
+                case 'delete':
+                    $item->destroy();
+                break;
+
+                
                 default:
                     // default home page
                     $item->index();
-                    break;
+                break;
             }
         break;
     }

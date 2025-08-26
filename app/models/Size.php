@@ -1,5 +1,5 @@
 <?php 
-    require_once 'config/dbconnection.php';
+    require_once 'config/dbconnection.php';   
     class Size{
 
         private $conn;
@@ -50,7 +50,9 @@
         }
 
         public function delete($id){
-            
+            $stmt = $this->conn->prepare('DELETE FROM sizes WHERE `id` = ?');
+            $stmt->bind_param("i",$id);
+            return $stmt->execute();
         }
     }
 

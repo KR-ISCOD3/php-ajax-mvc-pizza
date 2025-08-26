@@ -1,4 +1,6 @@
 <!-- section item -->
+<input type="hidden" name="userid" id="userid" value="<?= $_SESSION['user']['user_id'] ?>">
+
 <section class="border-top">
     <div class="d-flex justify-content-between align-items-center">
         
@@ -27,7 +29,7 @@
                     <td class="text-secondary text-center">Action</td>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id='tbod'>
                 <tr class="align-middle">
                     <td>1</td>
                     <td>
@@ -67,8 +69,10 @@
                     <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
-                        
+                    <form id="additemForm">
+
+                        <input type="hidden" name="user_id" id="user_id" value="<?= $_SESSION['user']['user_id'] ?>">
+
                         <div>
                             <label for="">Image</label>
                             <div id="previewimage" class="w-100 bg-secondary overflow-hidden border" style="height: 250px;">
@@ -78,7 +82,7 @@
                         </div>
                         <div class="my-2">
                             <label for="">Item Name</label>
-                            <input required class="form-control shadow-none border"  type="text" placeholder="Enter Name" name="price" id="price">
+                            <input required class="form-control shadow-none border"  type="text" placeholder="Enter Name" name="name" id="name">
                         </div>
                         
                         <div class="modal-footer">
@@ -100,7 +104,7 @@
                     <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
+                    <form >
                         
                         <div>
                             <label for="">Image</label>
@@ -133,13 +137,15 @@
                     <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
+                    <form id="formDeleteItem">
                         
+                        <input type="hidden" name="del_id" id="del_id">
+                        <input type="hidden" name="imageName" id="imageName">
                         <p class="text-center fs-4">Are u sur u want to <span class="text-danger">delete</span>?🤔</p>
                         
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
                         </div>
                     </form>
                 </div>
@@ -148,3 +154,78 @@
     </div>
 </section>
 <!-- section item -->
+
+<script>
+    $(document).ready(function(e){
+
+        function fetchAllData(){
+            $.ajax({
+                url:"index.php?page=itempage",
+                method:'post',
+                data:{
+                    func:'getAllData',
+                    userid:$('#userid').val()
+                },
+                success: function(res){
+                    $('#tbod').html(res);
+                }
+            })
+        }
+
+        fetchAllData();
+
+        $('#additemForm').on('submit',function(e){
+
+            e.preventDefault();
+
+            let formdata = new FormData($('#additemForm')[0])
+            formdata.append('func','create')
+
+            $.ajax({
+                url: 'index.php?page=itempage',
+                method:'post',
+                data:formdata,
+                processData: false,  // important
+                contentType: false,  // important
+                success:function(res){
+                    console.log(res);
+                    $("#modalitem").modal('hide');
+                    fetchAllData();
+                }
+            })
+            $('#previewimage').empty();
+            $('#previewimage').html('<img src="app/assets/image/placeholderpizza.png" class="w-100 h-100 object-fit-cover">');
+            $('#additemForm')[0].reset();
+            
+        })
+
+        $(document).on('click','.btn-delete-item',function(e){
+            e.preventDefault();
+            // alert($(this).data('id'));
+
+            $('#del_id').val($(this).data('id'))
+            $('#imageName').val($(this).data('image'))
+        })
+
+        $('#formDeleteItem').on('submit',function(e){
+            e.preventDefault();
+            // alert($('#del_id').val())
+            // alert($('#imageName').val())
+            $.ajax({
+                url: 'index.php?page=itempage',
+                method:'post',
+                data:{
+                    func:"delete",
+                    id:$('#del_id').val(),
+                    image:$('#imageName').val(),
+                },
+                success:function(res){
+                    if(res){
+                        fetchAllData();
+                        $('#modaldeleteitem').modal('hide');
+                    }
+                }
+            })
+        })
+    })
+</script>

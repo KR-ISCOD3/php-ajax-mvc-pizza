@@ -35,14 +35,17 @@
             // send data to frontent
             $sizes = $obj->getAllData();
 
+            $count = 0;
+
             foreach($sizes as $s){
+                $count++;
                 $id = $s['id'];
                 $size = $s['size'];
                 $price = number_format($s['price'], 2); 
 
                 echo <<<HTML
                         <tr class="align-middle">
-                            <td>$id</td>
+                            <td>$count</td>
                             <td>$size</td>
                             <td class="text-danger">$$price</td>
                             <td>
@@ -60,13 +63,16 @@
                                     <i class="bi bi-vector-pen text-light"></i>
                                 </button>
 
-                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modaldeletesize">
+                                <button data-id="$id"  class="btn btn-danger btn-delete" data-bs-toggle="modal" data-bs-target="#modaldeletesize">
                                     <i class="bi bi-trash3-fill"></i>
                                 </button>
                             </td>
                         </tr>
                 HTML;
+                
+               
             }
+            
         }
 
         public function update() {
@@ -93,9 +99,21 @@
             exit; // stop any further HTML/template
         }
 
-
         public function destroy(){
-            
+            $id = $_POST["id"] ?? "";
+
+            if(empty($id)){
+                echo 'Invalid sth';
+            }
+
+            $sizeModel = new Size();
+            $rs = $sizeModel->delete($id);
+
+            if($rs){
+                echo 'success';
+            }else{
+                echo 'Error Deleted';
+            }
         }
     }
 ?>
