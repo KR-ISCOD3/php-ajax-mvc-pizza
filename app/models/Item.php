@@ -50,6 +50,22 @@
             return $rs;
         }
 
+        public function update($id, $name, $image = null){
+            // If image is provided, update both name & image
+            if ($image !== null) {
+                $stmt = $this->conn->prepare('UPDATE items SET name = ?, image = ? WHERE id = ?');
+                $stmt->bind_param("ssi", $name, $image, $id);
+            } else {
+                // Only update name
+                $stmt = $this->conn->prepare('UPDATE items SET name = ? WHERE id = ?');
+                $stmt->bind_param("si", $name, $id);
+            }
+
+            $rs = $stmt->execute();
+            $stmt->close();
+            return $rs;
+        }
+
     }
 
 ?>

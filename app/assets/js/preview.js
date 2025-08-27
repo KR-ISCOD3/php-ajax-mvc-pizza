@@ -17,4 +17,5 @@ $(document).ready(function () {
             $('#previewimage').empty(); // Clear if no file selected
         }
     });
+
 });

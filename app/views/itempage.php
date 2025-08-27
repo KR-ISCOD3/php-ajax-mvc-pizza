@@ -104,18 +104,22 @@
                     <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form >
+                    <form id="updateForm">
                         
+                        <input type="hidden" name="id" id="up_id">
+                        <input type="hidden" name="old_image" id="old_img">
+
                         <div>
-                            <label for="">Image</label>
-                            <div id="previewimage" class="w-100 bg-secondary overflow-hidden border" style="height: 250px;">
+                            <label >Image</label>
+                            <div id="previewimageup" class="w-100 bg-secondary overflow-hidden border" style="height: 250px;">
                                 <img src="app/assets/image/placeholderpizza.png" style="height: 100%; width: auto;" class="w-100 h-100 object-fit-cover">
                             </div>
-                            <input required type="file" name="image" id="image" class="form-control shadow-none border">
+                            <input type="file" name="image" id="upimage" class="form-control shadow-none border">
                         </div>
+
                         <div class="my-2">
-                            <label for="">Item Name</label>
-                            <input required class="form-control shadow-none border"  type="text" placeholder="Enter Name" name="price" id="price">
+                            <label >Item Name</label>
+                            <input name="name" id="upname" required class="form-control shadow-none border"  type="text" placeholder="Enter Name" >
                         </div>
                         
                         <div class="modal-footer">
@@ -227,5 +231,62 @@
                 }
             })
         })
+
+        $(document).on('click', '.btn-up-item', function (e) {
+            $('#up_id').val($(this).data('id'));
+            $('#old_img').val($(this).data('image'));
+            $('#upname').val($(this).data('name'));
+
+            $('#previewimageup').html(`
+                <img src="app/assets/uploads/${$(this).data('image')}" 
+                    style="height: 100%; width: auto;" 
+                    class="w-100 h-100 object-fit-cover">
+            `);
+        });
+
+        $('#updateForm').on('submit',function(e){
+            // alert(123)
+            e.preventDefault();
+
+            let formdata = new FormData($('#updateForm')[0])
+            formdata.append('func','update')
+
+            $.ajax({
+                url: 'index.php?page=itempage',
+                method:'post',
+                data:formdata,
+                processData: false,  // important
+                contentType: false,  // important
+                success:function(res){
+                    console.log(res);
+                    $("#modalupitem").modal('hide');
+                    fetchAllData();
+                }
+            })
+
+            $('#upimage').val('')
+        })
+
+        $('#upimage').on('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#previewimageup').html(`
+                        <img src="${e.target.result}" 
+                            style="height: 100%; width: auto;" 
+                            class="w-100 h-100 object-fit-cover">
+                    `);
+                };
+                reader.readAsDataURL(file);
+            } else {
+                // Clear preview if no file selected
+                $('#previewimageup').html(`
+                    <img src="app/assets/image/placeholderpizza.png" 
+                        style="height: 100%; width: auto;" 
+                        class="w-100 h-100 object-fit-cover">
+                `);
+            }
+        });
     })
 </script>

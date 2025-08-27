@@ -128,7 +128,10 @@
                     $item->destroy();
                 break;
 
-                
+                case 'update':
+                    $item->update();
+                break;
+
                 default:
                     // default home page
                     $item->index();
