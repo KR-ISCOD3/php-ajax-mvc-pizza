@@ -68,9 +68,19 @@
             // cerate object from HomeController
             $home = new HomeController();
             switch($func){
+
+                case 'getItem':
+                    $home->getItem();
+                break;
+                    
+                case 'getSize':
+                    $home->getSize();
+                break;
+                
                 case 'logout':
                     $home->logout();
                 break;
+
                 // call function in HomeController like create,update,delete....
                 default:
                     // default home page

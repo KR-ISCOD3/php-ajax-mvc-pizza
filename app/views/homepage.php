@@ -1,4 +1,6 @@
 <!-- section home -->
+<input type="hidden" name="userid" id="userid" value="<?= $_SESSION['user']['user_id'] ?>">
+
 <section>
     <h2 class="m-0 mt-3">Welcome back admin!</h2>
     <p class="text-secondary">You Can order Pizza now for customer</p>
@@ -82,23 +84,8 @@
                                 <td class="bg-success text-light">Items </td>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="align-middle">
-                                <td class="text-center">1</td>
-                                <td>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="d-flex align-items-center">
-                                            <img src="" alt="" style="width: 50px;height: 50px;">
-                                            <h5 class="m-0 ms-1">Pizza Sea Beb Khmer</h5>
-                                        </div>
-                                        <div>
-                                            <button class="btn btn-success">
-                                                + Add to Cart 
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>   
+                        <tbody id="tb">
+                            <!-- Data load -->
                         </tbody>
                     </table>
                 </div>
@@ -119,65 +106,15 @@
                                     <td class="text-secondary">Subtotal</td>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr class="align-middle">
-                                    <td>1</td>
-                                    <td>Pizza Yummy</td>
-                                    <td class="col-3">
-                                        <select name="" id="" class="form-select shadow-none border">
-                                            <option value="1">Small</option>
-                                            <option value="2">Meduim</option>
-                                            <option value="3">Large</option>
-                                        </select>
-                                    </td>
-                                    <td class="col-2">
-                                        <input min="0" type="number" class="form-control shadow-none border">
-                                    </td>
-                                    <td>
-                                        $1.50
-                                    </td>
-                                </tr>
-                                <tr class="align-middle">
-                                    <td>1</td>
-                                    <td>Pizza Yummy</td>
-                                    <td class="col-3">
-                                        <select name="" id="" class="form-select shadow-none border">
-                                            <option value="1">Small</option>
-                                            <option value="2">Meduim</option>
-                                            <option value="3">Large</option>
-                                        </select>
-                                    </td>
-                                    <td class="col-2">
-                                        <input min="0" type="number" class="form-control shadow-none border">
-                                    </td>
-                                    <td>
-                                        $1.50
-                                    </td>
-                                </tr>
-                                <tr class="align-middle">
-                                    <td>1</td>
-                                    <td>Pizza Yummy</td>
-                                    <td class="col-3">
-                                        <select name="" id="" class="form-select shadow-none border">
-                                            <option value="1">Small</option>
-                                            <option value="2">Meduim</option>
-                                            <option value="3">Large</option>
-                                        </select>
-                                    </td>
-                                    <td class="col-2">
-                                        <input min="0" type="number" class="form-control shadow-none border">
-                                    </td>
-                                    <td>
-                                        $1.50
-                                    </td>
-                                </tr>
+                            <tbody id="cartTable">
+                                <!-- Cart data -->
                             </tbody>
                         </table>
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="text-secondary">
-                        <p class="m-0 fs-5">Tax: 10%</p>
-                        <p class="m-0 fs-5">Total: <span class="fw-bold">$4.50</span></p>
+                            <p class="m-0 fs-5">Tax: 10%</p>
+                            <p class="m-0 fs-5">Total: <span class="fw-bold">$4.50</span></p>
                         </div>
                         <div>
                         <button class="text-end btn btn-success">
@@ -195,3 +132,114 @@
      
 </section>
 <!-- section home -->
+
+<script>
+    $(document).ready(function(e){
+
+        let sizeOptions = "";
+
+        function getItem(){
+            $.ajax({
+                url:'index.php?page=homepage',
+                method:'post',
+                data:{
+                    func: 'getItem',
+                    userid: $('#userid').val()
+                },
+                success: function(echo){
+                    $('#tb').html(echo);
+                }
+            })
+        }
+        
+        function getSize(){
+            $.ajax({
+                url:'index.php?page=homepage',
+                method:'post',
+                data:{
+                    func: 'getSize',
+                },
+                success: function(echo){
+                    sizeOptions = echo;
+                }
+            })
+        }
+        getSize();
+        getItem();
+
+        let cart = []; // cart array
+     
+        // Add to cart
+        $(document).on('click','.btn-order',function(){
+
+            const itemid = $(this).data('id');
+            const name = $(this).data('name');
+
+            const sizeId = parseInt($('#size option:selected').data('id') || 0);
+            const price = parseFloat($('#size option:selected').data('price') || 0);
+
+            // check if item with the same id AND size exists
+            let exists = cart.find(item => item.itemid === itemid && item.sizeId === sizeId);
+            if(exists){
+                alert(`Item with this size already in cart ✅`);
+                return;
+            }
+
+            let qty = 0; // default quantity
+            let tax = 0;
+            let subtotal = price * qty;
+
+            // push item to cart array
+            cart.push({ itemid, name, sizeId, qty, tax, subtotal });
+
+            // build table row
+            let row = `
+                <tr class="align-middle" data-itemid="${itemid}" data-sizeid="${sizeId}">
+                    <td>${itemid}</td>
+                    <td>${name}</td>
+                    <td class="col-3">
+                        <select class="form-select shadow-none border cart-size">
+                            ${sizeOptions}
+                        </select>
+                    </td>
+                    <td class="col-2">
+                        <input min="1" type="number" value="${qty}" class="form-control shadow-none border cart-qty">
+                    </td>
+                    <td class="item-total">$${subtotal.toFixed(2)}</td>
+                </tr>
+            `;
+
+            $('#cartTable').append(row);
+            console.table(cart);
+        });
+
+        // Update array when size or quantity changes
+        $(document).on('change input','.cart-size, .cart-qty',function(){
+
+            let row = $(this).closest('tr');
+            const itemid = row.data('itemid');
+            const oldsizeid = row.data('sizeid');
+
+            const newsizeId = parseInt(row.find('.cart-size option:selected').data('id') || 0);
+            const price = parseFloat(row.find('.cart-size option:selected').data('price') || 0);
+            const qty = parseInt(row.find('.cart-qty').val() || 0);
+            const subtotal = price * qty;
+
+            // update table
+            row.find('.item-total').text(`$${subtotal.toFixed(2)}`);
+            row.data('sizeid', newsizeId);
+
+            // update cart array
+            const cartItemIndex = cart.findIndex(item => item.itemid === itemid && item.sizeId === oldsizeid);
+            if(cartItemIndex !== -1){
+                cart[cartItemIndex].sizeId = newsizeId;
+                cart[cartItemIndex].qty = qty;
+                cart[cartItemIndex].subtotal = subtotal;
+            }
+
+            console.table(cart);
+        });
+
+    })
+
+</script>
