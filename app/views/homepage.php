@@ -179,7 +179,7 @@
             const price = parseFloat($('#size option:selected').data('price') || 0);
 
             // check if item with the same id AND size exists
-            let exists = cart.find(item => item.itemid === itemid && item.sizeId === sizeId);
+            let exists = cart.find(item => item.itemid === itemid);
             if(exists){
                 alert(`Item with this size already in cart ✅`);
                 return;
