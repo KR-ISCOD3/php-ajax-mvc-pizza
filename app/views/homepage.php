@@ -117,7 +117,7 @@
                             <p class="m-0 fs-5">Total: <span class="fw-bold">$4.50</span></p>
                         </div>
                         <div>
-                        <button class="text-end btn btn-success">
+                        <button id="orderbtn" class="text-end btn btn-success">
                             Process Order
                         </button>
                         </div>
@@ -132,7 +132,7 @@
      
 </section>
 <!-- section home -->
-
+<input type="hidden" name="userid" id="userid" value="<?= $_SESSION['user']['user_id'] ?>">
 <script>
     $(document).ready(function(e){
 
@@ -188,9 +188,10 @@
             let qty = 0; // default quantity
             let tax = 0;
             let subtotal = price * qty;
+            let userid = $('#userid').val();
 
             // push item to cart array
-            cart.push({ itemid, name, sizeId, qty, tax, subtotal });
+            cart.push({userid, itemid, name, sizeId, qty, tax, subtotal });
 
             // build table row
             let row = `
@@ -240,6 +241,24 @@
             console.table(cart);
         });
 
+
+        $('#orderbtn').on('click',function(e){
+            e.preventDefault();
+            
+            $.ajax({
+                url: 'index.php?page=homepage',
+                method: 'post',
+                data:{
+                    func:'order',
+                    cart:cart
+                },
+                success:function(echo){
+                    console.log(echo);                    
+                }
+            })
+
+            $('#cartTable').html('hx hx bro');
+        })
     })
 
 </script>

@@ -76,6 +76,10 @@
                 case 'getSize':
                     $home->getSize();
                 break;
+
+                case 'order':
+                    $home->order();
+                break;    
                 
                 case 'logout':
                     $home->logout();

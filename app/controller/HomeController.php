@@ -1,6 +1,7 @@
 <?php 
 
     require_once 'app/models/Item.php';
+    require_once 'app/models/Home.php';
 
     class HomeController{
         public function index(){
@@ -64,14 +65,6 @@
 
         }
 
-        public function update(){
-            
-        }
-
-        public function destroy(){
-            
-        }
-
         public function logout(){
             session_unset();
             session_destroy();
@@ -80,6 +73,16 @@
         }
 
 
+        public function order(){
+            $cart = $_POST['cart'];
+            
+            $homeMode = new Home();
 
+            $rs = $homeMode->order($cart);
+
+            if($rs){
+                echo 'success';
+            }
+        }
     }
 ?>
